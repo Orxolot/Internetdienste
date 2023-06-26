@@ -1,3 +1,12 @@
+/* Farben Vorlage */
+/*
+Blau:           #1F4E8C
+Dunkel Grau:    #3D3F45
+Hell Frau:      #E5E5E5
+Rot:            #A62C21
+*/
+
+
 html {
     font-size: 16px;
 }
@@ -10,3 +19,4 @@ body {
 * {
     box-sizing: border-box;
 }
+
