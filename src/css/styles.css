@@ -6,7 +6,6 @@ Hell Frau:      #E5E5E5
 Rot:            #A62C21
 */
 
-
 html {
     font-size: 16px;
 }
@@ -33,5 +32,5 @@ body {
     width: auto;
     position: absolute;
     left: 2rem;
-    top: 0.5rem;
+    top: 0.55rem;
 }
