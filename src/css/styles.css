@@ -80,3 +80,12 @@ body {
 .active {
     background-color: #A62C21;
 }
+/* Header */
+
+.header-banner {
+    width: 100%;
+    height: 0;
+    padding-top: 20.83%;
+    background: url("../img/hintergrund.jpg");
+    background-size: contain;
+}
