@@ -29,7 +29,7 @@ body {
     font-size: 1.1rem;
 }
 
-.header-nav > img {
+.header-nav > a > img {
     height: 30px;
     width: auto;
     position: absolute;
@@ -47,6 +47,7 @@ body {
 
 .header-nav > ul > li {
     display: inline-block;
+    margin-left: .4rem;
 }
 
 .header-nav > ul > li > a:link {
