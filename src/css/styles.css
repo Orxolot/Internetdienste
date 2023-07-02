@@ -38,6 +38,9 @@ body {
 .header-nav > ul {
     margin: 0;
     padding: 0;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
 }
 
 .header-nav > ul > li {
