@@ -25,6 +25,8 @@ body {
     height: 50px;
     background-color: #3D3F45;
     position: relative;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .header-nav > img {
@@ -40,7 +42,7 @@ body {
     padding: 0;
     position: absolute;
     right: 2rem;
-    top: 1rem;
+    top: .85rem;
 }
 
 .header-nav > ul > li {
