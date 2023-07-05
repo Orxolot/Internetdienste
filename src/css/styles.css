@@ -109,6 +109,7 @@ body {
     height: 37px;
     position: relative;
     margin-top: .4rem;
+    margin-bottom: 7pxS;
 }
 
 .mobile-nav-button > span {
@@ -127,6 +128,8 @@ body {
 
 .mobile-nav-dropdown {
     position: relative;
+    display: inline-block;
+    float: right;
 }
 
 .mobile-nav-content {
