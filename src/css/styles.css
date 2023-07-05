@@ -25,56 +25,63 @@ body {
     height: 50px;
     background-color: #3D3F45;
     position: relative;
-    font-weight: bold;
-    font-size: 1.1rem;
 }
 
-.header-nav > a > img {
+.header-nav a > img {
     height: 30px;
     width: auto;
-    position: absolute;
-    left: 2rem;
-    top: 0.55rem;
+    margin: 0.55rem;
+    float: left;
 }
 
-.header-nav > ul {
+.header-nav ul {
     margin: 0;
     padding: 0;
-    position: absolute;
-    right: 2rem;
+    float: right;
     height: 100%;
 }
 
-.header-nav > ul > li {
+.header-nav ul > li {
     display: inline-block;
     margin-left: .4rem;
     height: 100%;
     padding: 4 .2rem 0 .4rem;
 }
 
-.header-nav > ul > li >a {
+.header-nav ul > li >a {
     margin-top: .8rem;
     display: inline-block;
 }
 
-.header-nav > ul > li > a:link {
+.header-nav ul > li > a:link {
     color: #FFF;
     text-decoration: none;
 }
 
-.header-nav > ul > li > a:hover {
+.header-nav ul > li > a:hover {
     color: #3D3F45;
     text-decoration: none;
 }
 
-.header-nav > ul > li > a:active {
+.header-nav ul > li > a:active {
     color: #3D3F45;
     text-decoration: none;
 }
 
-.header-nav > ul > li > a:visited {
+.header-nav ul > li > a:visited {
     color: #FFF;
     text-decoration: none;
+}
+
+.header-nav .col-6 {
+    padding: 0;
+    padding-bottom: 0;
+}
+
+.header-nav .container,
+.header-nav .row,
+.header-nav .col-6 {
+    height: 100%;
 }
 
 .active {
