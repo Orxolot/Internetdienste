@@ -133,6 +133,11 @@ body {
     position: absolute;
     right: 0;
     top: 50px;
+    display: none;
+}
+
+.mobile-nav-dropdown:hover > .mobile-nav-content {
+    display: block;
 }
 
 /* Header */
