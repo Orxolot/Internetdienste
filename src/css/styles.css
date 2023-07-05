@@ -107,6 +107,13 @@ body {
     left: 7px;
 }
 
+.mobile-nav-content > ul > li {
+    display: block;
+    background-color: #3D3F45;
+    height: 50px;
+    padding: 0 1.2rem;
+}
+
 /* Header */
 
 .header-banner {
