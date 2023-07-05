@@ -87,6 +87,26 @@ body {
 .active {
     background-color: #A62C21;
 }
+
+/* Navigationsleiste (Mobile) */
+
+.mobile-nav-button {
+    color: #FFF;
+    float: right;
+    font-size: 2rem;
+    border: 2px solid #FFF;
+    width: 37px;
+    height: 37px;
+    position: relative;
+    margin-top: .4rem;
+}
+
+.mobile-nav-button > span {
+    position: absolute;
+    bottom: -2px;
+    left: 7px;
+}
+
 /* Header */
 
 .header-banner {
