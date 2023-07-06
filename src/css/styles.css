@@ -143,6 +143,15 @@ body {
     display: block;
 }
 
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-nav {
+        display: block;
+    }
+}
+
 /* Header */
 
 .header-banner {
