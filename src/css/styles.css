@@ -148,11 +148,11 @@ body {
 }
 
 @media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
     .mobile-nav {
         display: block;
+    }
+    .desktop-nav {
+        display: none;
     }
 }
 
