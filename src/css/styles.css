@@ -156,6 +156,11 @@ body {
     }
 }
 
+/* Leistungen */
+.flex-container {
+    display: flex;
+}
+
 /* Header */
 
 .header-banner {
@@ -173,6 +178,9 @@ body {
     background: url("../img/hintergrund-klein.jpg");
     background-size: contain;
 }
+
+/* Inhalt */
+
 
 /* Fusszeile */
 .footer-nav {
