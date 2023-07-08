@@ -165,15 +165,7 @@ body {
     justify-content: center; 
 }
 
-.flex-container1 {
-    display: flex;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-around;
-}
-
-.flex-container2 {
+.flex-container {
     display: flex;
     width: 50%;
     margin-left: auto;
