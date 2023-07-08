@@ -181,8 +181,11 @@ body {
     justify-content: space-around;
 }
 
-.leistungs-box {
+.leistung-box {
     flex-basis: 25%;
+    background-color: #3D3F45;
+    color: #FFF;
+    padding: 2rem 4rem;
 }
 
 /* Header */
