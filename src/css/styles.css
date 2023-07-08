@@ -167,15 +167,15 @@ body {
 
 .flex-container {
     display: flex;
-    width: 50%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-around;
 }
 
 .leistung-box {
-    flex-basis: 25%;
     background-color: #3D3F45;
+    flex-basis: 25%;
     color: #FFF;
     padding: 2rem 4rem;
     text-align: center;
