@@ -186,8 +186,16 @@ body {
     background-color: #3D3F45;
     color: #FFF;
     padding: 2rem 4rem;
+    text-align: center;
 }
 
+.leistung-box ul {
+    padding: 0;
+}
+
+.leistung-box ul li {
+    list-style-position: inside;
+}
 /* Header */
 
 .header-banner {
