@@ -198,6 +198,12 @@ body {
 .leistung-box ul li {
     list-style-position: inside;
 }
+
+.btn-typ-2 {
+    width: 50%;
+    height: 2.5rem;
+    font-size: 1rem;
+}
 /* Header */
 
 .header-banner {
