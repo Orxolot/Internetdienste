@@ -178,8 +178,12 @@ body {
     background-color: #3D3F45;
     flex-basis: 25%;
     color: #FFF;
-    padding: 2rem 4rem;
+    padding: 1rem 2rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .leistung-box ul {
