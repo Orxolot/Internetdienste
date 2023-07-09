@@ -235,34 +235,34 @@ body {
     background-size: contain;
 }
 
-/* Bestellung */
-#bestellung-formular input,
-#bestellung-formular textarea {
+/* kontakt */
+#kontakt-formular input,
+#kontakt-formular textarea {
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
     color: #3D3F45;
 }
 
-#bestellung-formular {
+#kontakt-formular {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
 }
 
-#bestellung-formular textarea {
+#kontakt-formular textarea {
     height: 100px;
 }
 
 @media (max-width: 1366px) {
-    #bestellung-formular {
+    #kontakt-formular {
         width: 90%;
     }
 }
 
 @media (max-width: 1024px) {
-    #bestellung-formular {
+    #kontakt-formular {
         width: 100%;
     }
 }
