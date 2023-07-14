@@ -223,9 +223,11 @@ body {
 }
 
 .btn-typ-2 {
-    width: 50%;
-    height: 2.5rem;
+    border: 2p solid;
+    background-color: white;
     font-size: 1rem;
+    width: 150px;
+    height: 39px;
 }
 
 /* Header */
