@@ -223,7 +223,36 @@ body {
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 1.4rem
-  }
+}
+  
+.leistung-ansehen-btn {
+   text-decoration: none;
+   height: 40px;
+   border: 2px solid #FFF;
+   display: inline-block;
+   padding-top: 0.5rem;
+   width: 40%;
+   margin-top: 1rem;
+   min-width: 95px
+}
+  
+.leistung-ansehen-btn:link {
+  color: #FFF;
+}
+  
+.leistung-ansehen-btn:active {
+  color: #FFF;
+}
+  
+.leistung-ansehen-btn:visited {
+  color: #FFF;
+}
+  
+.leistung-ansehen-btn:hover {
+  color: #A62C21;
+  font-weight: bold;
+  border: 2px solid #A62C21;
+}
 
 .intro-container {
     width: 80%;
