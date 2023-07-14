@@ -154,6 +154,30 @@ body {
     }
 }
 
+/* Startseite */
+
+#über-uns-bereich {
+    background-color: #FFF;
+  }
+  
+#über-uns-container {
+    position: relative;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#über-uns-container > p {
+    width: 75%;
+    font-size: 1.2rem;
+}
+      
+ @media (max-width: 1140px){
+    #über-uns-container > p {
+         width: 100%;
+    }
+}
+
 /* Leistungen */
 .intro-container {
     width: 80%;
