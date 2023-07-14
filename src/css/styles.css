@@ -217,8 +217,9 @@ body {
 }
 
 .leistung-box {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     min-height: initial;
+
 }
 
 .btn-typ-2 {
@@ -330,6 +331,10 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+a.bestellung-checkbox {
+    border-bottom: 1.5rem;
 }
 
 /* Fusszeile */
