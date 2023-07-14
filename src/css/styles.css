@@ -155,31 +155,7 @@ body {
 }
 
 /* Startseite */
-
-#ueber-uns-bereich {
-    background-color: #FFF;
-  }
-  
-#ueber-uns-container {
-    position: relative;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#ueber-uns-container > p {
-    width: 75%;
-    font-size: 1.2rem;
-}
-      
- @media (max-width: 1140px){
-    #ueber-uns-container > p {
-         width: 100%;
-    }
-}
-
-/* Service */
-#leistung-Bereich {
+.leistung-Bereich {
     background-color: #F0F0F0;
   }
   
