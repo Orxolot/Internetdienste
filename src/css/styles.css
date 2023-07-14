@@ -172,6 +172,22 @@ body {
     justify-content: space-around;
 }
 
+.col-7 {
+    display: flex;
+    margin-left: 0;
+    margin-right: auto;
+    flex-direction: row;
+    width: 1rem;
+}
+
+.col-2 {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 49%;
+}
+
 .flex-container > .intro-container {
     width: 100%;
 }
