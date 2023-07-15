@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const app = express();
 const port = 3000;
@@ -18,14 +19,16 @@ app.post('/kontakt', (req, res) => {
 
   // E-Mail-Konfiguration
   const transporter = nodemailer.createTransport({
-    host: 'mail.gmx.net', // Ändern Sie den Host entsprechend Ihrer Konfiguration
-    port: 465, // Port 465 für SSL
-    secure: true, // SSL aktivieren
+    host: 'mail.gmx.net',
+    port: 587,
+    secure: false,
     auth: {
-      user: 'tolu_lknet@gmx.ch', // Ihre E-Mail-Adresse
-      pass: 'a9408a3c0ea51c7de6d37394cbe2c32a41e8f99453' // Ihr verschlüsseltes Passwort
-    }
+      user: 'tolu_lknet@gmx.ch',
+      pass: 'a9408a3c0ea51c7de6d37394cbe2c32a41e8f99453' // Verwenden Sie das verschlüsselte Passwort hier
+    },
+    requireTLS: true
   });
+  
 
   // E-Mail-Inhalt
   const mailOptions = {
