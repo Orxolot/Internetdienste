@@ -1,39 +1,52 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
-// Parser für Anforderungen mit Content-Type "application/x-www-form-urlencoded"
+// Statische Dateien ausliefern
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Parser für Anforderungen mit Content-Type "application/xml"
-app.use(bodyParser.text({ type: 'application/xml' }));
+// Parse application/json
+app.use(bodyParser.json());
 
-// Endpunkt für das Verarbeiten des Kontaktformulars
+// POST-Anfragen für jedes Formular abfangen
 app.post('/kontakt', (req, res) => {
-  const xmlData = req.body;
-  const email = req.body.email; // Annahme: Das Feld "email" enthält die E-Mail-Adresse
+  const { vorname, nachname, email, nachricht } = req.body;
 
-  // Erstellen Sie den Dateinamen basierend auf der E-Mail-Adresse
-  const fileName = email.replace(/[^a-z0-9]/gi, '_') + '.xml';
-
-  // Speichern Sie das XML auf dem Server
-  const filePath = '\\\\SRV01\\contact\\' + fileName; // Beachten Sie die doppelten Backslashes
-
-  fs.writeFile(filePath, xmlData, (err) => {
+  // Speichern der Daten in einer Datei
+  const data = `Vorname: ${vorname}\nNachname: ${nachname}\nE-Mail: ${email}\nNachricht: ${nachricht}\n\n`;
+  fs.appendFile(path.join(__dirname, 'data/kontakt.txt'), data, (err) => {
     if (err) {
-      console.error('Fehler beim Speichern des Kontakt-XML.', err);
-      res.status(500).send('Fehler beim Speichern des Kontakt-XML.');
+      console.error(err);
+      res.sendStatus(500);
     } else {
-      console.log('Kontakt-XML erfolgreich gespeichert.');
-      res.status(200).send('Kontakt-XML erfolgreich gespeichert.');
+      res.sendStatus(200);
     }
   });
 });
 
-// Server starten
+app.post('/bestellung', (req, res) => {
+  const { vorname, nachname, email, username, passwort, url } = req.body;
+
+  // Speichern der Daten in einer Datei
+  const data = `Vorname: ${vorname}\nNachname: ${nachname}\nE-Mail: ${email}\nUsername: ${username}\nPasswort: ${passwort}\nURL: ${url}\n\n`;
+  fs.appendFile(path.join(__dirname, 'data/bestellung.txt'), data, (err) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+// Starten des Servers
 app.listen(port, () => {
-  console.log(`Server läuft auf Port ${port}`);
+  console.log(`Server gestartet auf Port ${port}`);
 });
