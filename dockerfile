@@ -1,11 +1,26 @@
-# Basisimage
-FROM httpd:latest
+# Stage 1: Node.js-Build-Container
+FROM node:14-alpine as build
 
-# Kopiere die Webseite in das Apache-Dokumentenverzeichnis
-COPY . /usr/local/apache2/htdocs/
+WORKDIR /app
 
-# Kopiere das JavaScript-Script in das Apache-Konfigurationsverzeichnis
-COPY server.js /usr/local/apache2/conf/
+# Abhängigkeiten installieren
+COPY package.json package-lock.json ./
+RUN npm install
 
-# Aktiviere das JavaScript-Modul in der Apache-Konfiguration
-RUN echo "LoadModule jss_module /usr/local/apache2/conf/server.js" >> /usr/local/apache2/conf/httpd.conf
+# Quellcode kopieren
+COPY server.js ./
+
+# Stage 2: NGINX-Container
+FROM nginx:alpine
+
+# NGINX-Konfiguration anpassen
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Statische Dateien kopieren
+COPY public /usr/share/nginx/html
+
+# Port freigeben
+EXPOSE 80
+
+# Server starten
+CMD ["nginx", "-g", "daemon off;"]
