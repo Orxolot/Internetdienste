@@ -18,10 +18,12 @@ app.post('/kontakt', (req, res) => {
 
   // E-Mail-Konfiguration
   const transporter = nodemailer.createTransport({
-    service: 'GMX', // Ändern Sie den E-Mail-Dienst entsprechend Ihrer Konfiguration
+    host: 'mail.gmx.net', // Ändern Sie den Host entsprechend Ihrer Konfiguration
+    port: 465, // Port 465 für SSL
+    secure: true, // SSL aktivieren
     auth: {
       user: 'tolu_lknet@gmx.ch', // Ihre E-Mail-Adresse
-      pass: 'fasdG-ERa43-51gs' // Ihr E-Mail-Passwort
+      pass: 'a9408a3c0ea51c7de6d37394cbe2c32a41e8f99453' // Ihr verschlüsseltes Passwort
     }
   });
 
@@ -39,7 +41,6 @@ app.post('/kontakt', (req, res) => {
       ${nachricht}
     `
   };
-
   // E-Mail senden
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
