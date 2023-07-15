@@ -1,26 +1,14 @@
-# Stage 1: Node.js-Build-Container
-FROM node:14-alpine as build
-
+# Build-Stage
+FROM node:14 as build-stage
 WORKDIR /app
-
-# Abhängigkeiten installieren
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
+COPY . .
+# Hier könntest du ggf. einen Build-Schritt einfügen, wenn erforderlich
 
-# Quellcode kopieren
-COPY server.js ./
-
-# Stage 2: NGINX-Container
-FROM nginx:alpine
-
-# NGINX-Konfiguration anpassen
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-# Statische Dateien kopieren
-COPY public /usr/share/nginx/html
-
-# Port freigeben
+# Production-Stage
+FROM nginx:latest as production-stage
+COPY --from=build-stage /app /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-
-# Server starten
 CMD ["nginx", "-g", "daemon off;"]
