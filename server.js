@@ -18,17 +18,17 @@ app.post('/kontakt', (req, res) => {
 
   // E-Mail-Konfiguration
   const transporter = nodemailer.createTransport({
-    service: 'Gmail', // Ändern Sie den E-Mail-Dienst entsprechend Ihrer Konfiguration
+    service: 'GMX', // Ändern Sie den E-Mail-Dienst entsprechend Ihrer Konfiguration
     auth: {
-      user: 'ihre-email@gmail.com', // Ihre E-Mail-Adresse
-      pass: 'ihr-email-passwort' // Ihr E-Mail-Passwort
+      user: 'tolu_lknet@gmx.ch', // Ihre E-Mail-Adresse
+      pass: 'fasdG-ERa43-51gs' // Ihr E-Mail-Passwort
     }
   });
 
   // E-Mail-Inhalt
   const mailOptions = {
-    from: 'ihre-email@gmail.com', // Absender-E-Mail-Adresse
-    to: 'ziel-email@example.com', // Empfänger-E-Mail-Adresse
+    from: 'tolu_lknet@gmx.ch', // Absender-E-Mail-Adresse
+    to: 'tolu@lknet.ch', // Empfänger-E-Mail-Adresse
     subject: 'Kontaktanfrage von LKNet', // Betreff der E-Mail
     text: `
       Vorname: ${vorname}
