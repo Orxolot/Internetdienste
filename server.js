@@ -1,52 +1,63 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
-
+const express = require("express");
 const app = express();
-const port = 3000;
+const fs = require("fs");
+const yaml = require("js-yaml");
+const PORT = process.env.PORT || 3000;
 
-// Statische Dateien ausliefern
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
-// Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+const usersFilePath = "users.yaml";
 
-// Parse application/json
-app.use(bodyParser.json());
+// Dummy-Datenbank für Benutzer
+let users = [];
 
-// POST-Anfragen für jedes Formular abfangen
-app.post('/kontakt', (req, res) => {
-  const { vorname, nachname, email, nachricht } = req.body;
+// Lade Benutzerdaten aus der YAML-Datei
+try {
+    const fileContents = fs.readFileSync(usersFilePath, "utf8");
+    users = yaml.safeLoad(fileContents);
+} catch (error) {
+    console.error("Fehler beim Laden der Benutzerdaten:", error);
+}
 
-  // Speichern der Daten in einer Datei
-  const data = `Vorname: ${vorname}\nNachname: ${nachname}\nE-Mail: ${email}\nNachricht: ${nachricht}\n\n`;
-  fs.appendFile(path.join(__dirname, 'data/kontakt.txt'), data, (err) => {
-    if (err) {
-      console.error(err);
-      res.sendStatus(500);
-    } else {
-      res.sendStatus(200);
-    }
-  });
+// Abfrage aller Benutzer
+app.get("/users", (req, res) => {
+    res.json(users);
 });
 
-app.post('/bestellung', (req, res) => {
-  const { vorname, nachname, email, username, passwort, url } = req.body;
+// Zeige einzelnen Benutzer
+app.get("/users/:id", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const user = users.find(user => user.id === userId);
 
-  // Speichern der Daten in einer Datei
-  const data = `Vorname: ${vorname}\nNachname: ${nachname}\nE-Mail: ${email}\nUsername: ${username}\nPasswort: ${passwort}\nURL: ${url}\n\n`;
-  fs.appendFile(path.join(__dirname, 'data/bestellung.txt'), data, (err) => {
-    if (err) {
-      console.error(err);
-      res.sendStatus(500);
+    if (user) {
+        res.json(user);
     } else {
-      res.sendStatus(200);
+        res.status(404).json({ message: "Benutzer nicht gefunden" });
     }
-  });
 });
 
-// Starten des Servers
-app.listen(port, () => {
-  console.log(`Server gestartet auf Port ${port}`);
+// Hinzufügen eines neuen Benutzers
+app.post("/users", (req, res) => {
+    const newUser = {
+        id: users.length + 1,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        message: req.body.message
+    };
+
+    users.push(newUser);
+
+    // Speichere Benutzerdaten in der YAML-Datei
+    try {
+        fs.writeFileSync(usersFilePath, yaml.safeDump(users), "utf8");
+    } catch (error) {
+        console.error("Fehler beim Speichern der Benutzerdaten:", error);
+    }
+
+    res.status(201).json(newUser);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server läuft auf http://localhost:${PORT}`);
 });
