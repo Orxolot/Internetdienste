@@ -1,63 +1,78 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
-const yaml = require("js-yaml");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(bodyParser.json());
 
-const usersFilePath = "users.yaml";
+// Verbindung zur MongoDB-Datenbank herstellen
+mongoose.connect("mongodb://localhost:27017/your-database-name", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-// Dummy-Datenbank für Benutzer
-let users = [];
+const db = mongoose.connection;
 
-// Lade Benutzerdaten aus der YAML-Datei
-try {
-    const fileContents = fs.readFileSync(usersFilePath, "utf8");
-    users = yaml.safeLoad(fileContents);
-} catch (error) {
-    console.error("Fehler beim Laden der Benutzerdaten:", error);
-}
+db.on("error", console.error.bind(console, "Verbindungsfehler:"));
+db.once("open", () => {
+  console.log("Verbindung zur MongoDB hergestellt");
+});
 
-// Abfrage aller Benutzer
-app.get("/users", (req, res) => {
+// Mongoose-Schema für Benutzerdaten definieren
+const userSchema = new mongoose.Schema({
+  id: Number,
+  firstName: String,
+  lastName: String,
+  email: String,
+  message: String,
+});
+
+const User = mongoose.model("User", userSchema);
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
     res.json(users);
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Benutzer:", error);
+    res.status(500).json({ message: "Interner Serverfehler" });
+  }
 });
 
-// Zeige einzelnen Benutzer
-app.get("/users/:id", (req, res) => {
-    const userId = parseInt(req.params.id);
-    const user = users.find(user => user.id === userId);
-
+app.get("/users/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  try {
+    const user = await User.findOne({ id: userId });
     if (user) {
-        res.json(user);
+      res.json(user);
     } else {
-        res.status(404).json({ message: "Benutzer nicht gefunden" });
+      res.status(404).json({ message: "Benutzer nicht gefunden" });
     }
+  } catch (error) {
+    console.error("Fehler beim Abrufen des Benutzers:", error);
+    res.status(500).json({ message: "Interner Serverfehler" });
+  }
 });
 
-// Hinzufügen eines neuen Benutzers
-app.post("/users", (req, res) => {
-    const newUser = {
-        id: users.length + 1,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        message: req.body.message
-    };
+app.post("/users", async (req, res) => {
+  const newUser = new User({
+    id: req.body.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    message: req.body.message,
+  });
 
-    users.push(newUser);
-
-    // Speichere Benutzerdaten in der YAML-Datei
-    try {
-        fs.writeFileSync(usersFilePath, yaml.safeDump(users), "utf8");
-    } catch (error) {
-        console.error("Fehler beim Speichern der Benutzerdaten:", error);
-    }
-
+  try {
+    await newUser.save();
     res.status(201).json(newUser);
+  } catch (error) {
+    console.error("Fehler beim Speichern des Benutzers:", error);
+    res.status(500).json({ message: "Interner Serverfehler" });
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
+  console.log(`Server läuft auf http://localhost:${PORT}`);
 });
