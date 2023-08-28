@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Verbindung zur MongoDB-Datenbank herstellen
-mongoose.connect("mongodb://root:example@10.0.5.10:27017/?authMechanism=DEFAULT", {
+mongoose.connect("mongodb://root:example@mongo_container:27017/?authMechanism=DEFAULT", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
