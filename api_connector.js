@@ -29,14 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const newUser = await response.json();
                 console.log('Neuer Benutzer erstellt:', newUser);
-                // Hier kannst du weitere Aktionen ausführen, z.B. eine Erfolgsmeldung anzeigen
             } else {
                 console.error('Fehler beim Erstellen des Benutzers');
-                // Hier kannst du eine Fehlermeldung anzeigen
             }
         } catch (error) {
             console.error('Fehler beim Kommunizieren mit dem Server:', error);
-            // Hier kannst du eine Fehlermeldung anzeigen
         }
     });
 });
